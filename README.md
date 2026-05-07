@@ -1,8 +1,8 @@
 # Neural Railgun: Steampunk Gallery Shooter
 
 ## Links
-- **Working Game:** [Insert GitHub Pages URL]
-- **GitHub Repo:** [Insert URL]
+- **Working Game:** [\[Insert GitHub Pages URL\]](https://aryanpatelucsc.github.io/Gallary-Shooter-Prototype/)
+- **GitHub Repo:** [\[Insert URL\]](https://github.com/AryanPatelUCSC/Gallary-Shooter-Prototype)
 
 ## Implementation Overview
 - **Reset Logic:** Game variables are reset via scene transitions to the `titleScene`, meeting the `init_game()` requirement.
