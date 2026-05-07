@@ -1,70 +1,27 @@
-class Load extends Phaser.Scene 
-{
-    constructor() 
-    {
-        super("loadScene");
-    }
+class Load extends Phaser.Scene {
+    constructor() { super("loadScene"); }
 
-    preload() 
-    {
+    preload() {
+        // Background Assets
         this.load.image("bg_far", "assets/free-steampunk-cityscape-pixel-backgrounds/background 1/origbig.png");
         this.load.image("bg_mid", "assets/free-steampunk-cityscape-pixel-backgrounds/background 2/origbig2.png");
 
-        this.load.spritesheet('trains', 'assets/trains.png', { 
-            frameWidth: 32, 
-            frameHeight: 32 
-        });
+        // Train Spritesheet (32x32 tiles)
+        this.load.aseprite('trains', 'assets/trains-sheet.png', 'assets/trains.json');
 
-        this.load.atlasXML(
-            "space", 
-            "assets/kenney_space-shooter-extension/Spritesheet/spaceShooter2_spritesheet.png", 
-            "assets/kenney_space-shooter-extension/Spritesheet/spaceShooter2_spritesheet.xml"
-        );
+        // Atlases for Ships, Characters, and Lasers
+        this.load.atlasXML("space", "assets/kenney_space-shooter-extension/Spritesheet/spaceShooter2_spritesheet.png", "assets/kenney_space-shooter-extension/Spritesheet/spaceShooter2_spritesheet.xml");
+        this.load.atlasXML("chars", "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_characters.png", "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_characters.xml");
+        this.load.atlasXML("lasers", "assets/kenney_alien-ufo-pack/Spritesheets/spritesheet_lasers.png", "assets/kenney_alien-ufo-pack/Spritesheets/spritesheet_lasers.xml");
 
-        // Characters (The Player animations)
-        this.load.atlasXML(
-            "chars", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_characters.png", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_characters.xml"
-        );
-
-        // Props (Highway/Rail Platform)
-        this.load.atlasXML(
-            "props", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_props.png", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_props.xml"
-        );
-
-        // Enemies (Aliens/Ghosts)
-        this.load.atlasXML(
-            "enemies", 
-            "assets/kenney_platformer-art-extended-enemies/Spritesheets/enemies.png", 
-            "assets/kenney_platformer-art-extended-enemies/Spritesheets/enemies.xml"
-        );
-
-        // Complete Pack (Used for bullets/lasers)
-        this.load.atlasXML(
-            "complete", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_complete.png", 
-            "assets/kenney_pixel-vehicle-pack/Spritesheet/spritesheet_complete.xml"
-        );
-        
-        this.load.atlasXML(
-            "lasers",
-            "assets/kenney_alien-ufo-pack/Spritesheets/spritesheet_lasers.png",
-            "assets/kenney_alien-ufo-pack/Spritesheets/spritesheet_lasers.xml"
-        );
-
+        // Audio Assets
         const audioPath = "assets/kenney_sci-fi-sounds/Audio/";
-        
-        this.load.audio("engine", audioPath + "spaceEngine_000.ogg");
         this.load.audio("shoot", audioPath + "laserRetro_004.ogg");
         this.load.audio("explosion", audioPath + "lowFrequency_explosion_000.ogg");
         this.load.audio("hit", audioPath + "impactMetal_003.ogg");
-        this.load.audio("shield", audioPath + "forceField_001.ogg");
         this.load.audio("spawn", audioPath + "thrusterFire_000.ogg");
 
-        // Simple Loading Progress Bar
+        // Progress Bar (Visual Component)
         let loadingBar = this.add.graphics();
         this.load.on('progress', (value) => {
             loadingBar.clear();
@@ -73,8 +30,8 @@ class Load extends Phaser.Scene
         });
     }
 
-    create() 
-    {
+    create() {
+        // Create animations for the player [cite: 167]
         this.anims.create({
             key: 'walk',
             frames: [
@@ -85,7 +42,6 @@ class Load extends Phaser.Scene
             repeat: -1
         });
 
-        // Move to the Intro Story Scene
-        this.scene.start("introScene");
+        this.scene.start("titleScene");
     }
 }

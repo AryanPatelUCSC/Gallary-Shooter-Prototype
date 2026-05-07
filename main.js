@@ -1,15 +1,16 @@
-"use strict"
-
+// main.js
 let config = {
-    parent: 'phaser-game',
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     physics: {
         default: 'arcade',
-        arcade: { debug: false }
+        arcade: { 
+            debug: false,
+            gravity: { y: 0 }
+        }
     },
-    scene: [Load, Intro, GalleryShooter, GameOver]
-}
+    scene: [Load, Title, Intro, Controls, Credits, GalleryShooter, BossScene, GameOver]
+};
 
-const game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
